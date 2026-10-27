@@ -1,4 +1,4 @@
-# Fichas de Luz v0.6
+# Fichas de Luz v0.7
 
 Aplicativo web responsivo para organizar projetos, fichas de iluminação, biblioteca global de equipamentos e planta 2D / pré-visualização 3D esquemática.
 
@@ -7,7 +7,7 @@ Aplicativo web responsivo para organizar projetos, fichas de iluminação, bibli
 2. Abra o repositório GitHub `fichas-de-luz`.
 3. Use **Add file → Upload files** e envie os arquivos que estão diretamente dentro desta pasta (`index.html`, `styles.css`, `app.js`, `manifest.webmanifest`, `sw.js`, `README.md`) para a raiz do repositório.
 4. Confirme o commit. O `index.html` deve estar na raiz, não dentro de uma subpasta.
-5. Aguarde o GitHub Pages concluir a implantação. Abra o site e atualize sem cache ou acrescente `?v=06` ao endereço.
+5. Aguarde o GitHub Pages concluir a implantação. Abra o site e atualize sem cache ou acrescente `?v=07` ao endereço.
 
 ## Dados e segurança
 - Projetos e equipamentos ficam no armazenamento local do navegador neste dispositivo.
@@ -30,21 +30,34 @@ Aplicativo web responsivo para organizar projetos, fichas de iluminação, bibli
 - A sincronização entre dispositivos e com Google Drive não está implementada.
 
 
-## Correções v0.6
+## Correções v0.7
 - Dez fichas iniciais seguem os títulos e a lógica de Fichas 01–10 resumidas do Volume 2.
 - Busca de equipamentos com sugestões customizadas durante a digitação, compatível com telas móveis.
 - Rotação direta no desenho 2D: selecione um objeto e arraste o manipulador circular que aparece ligado a ele.
 - As sugestões são selecionáveis por toque; o equipamento é associado ao cadastro global existente.
 
 
-## Exportação PDF v0.6
+## Exportação PDF v0.7
 A exportação agora abre um relatório próprio para impressão, com capa do projeto, planta capturada sem os controles do aplicativo, legenda/posições, fichas preenchidas e apenas equipamentos associados ao projeto. No diálogo de impressão do Android/Chrome, escolha “Salvar como PDF”.
 
 
-## Atualização v0.6
+## Atualização v0.7
 - Mantém a chave de armazenamento local existente para preservar projetos de teste.
 - Estrutura específica para cada uma das dez fichas, alinhada ao documento Fichas_01-10_Iluminacao_Cinematografica.
 - Autocomplete customizado para equipamento na planta, com resultados priorizados por correspondência de início de nome/palavra.
 - Controles de rotação direta ampliados e botões de ajuste fino de 15 graus.
 - PDF com planta 2D limpa gerada separadamente da interface e inclusão dos campos específicos de cada ficha.
 - O render 3D continua esquemático e não é simulação fotométrica.
+
+
+## Correções da v0.7
+- Navegação por abas para as dez fichas, exibindo uma ficha por vez.
+- A ficha ativa é salva no projeto.
+- Corrigido erro no arraste da alça de rotação: o manipulador de ponteiro agora trata rotação antes de calcular deslocamento de movimento.
+- Alça de rotação ampliada para facilitar o toque no Android.
+
+
+## Correção v0.8 — busca de equipamentos
+- Recupera a biblioteca inicial padrão se os dados locais existentes tiverem uma biblioteca vazia.
+- Busca sem diferenciar acentos e permite selecionar sugestões com toque e clique.
+- Os dados locais existentes de projetos são preservados.

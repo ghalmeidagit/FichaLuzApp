@@ -4,3 +4,14 @@
 
 /* v0.6: controls and print-oriented usability */
 .rotation-nudges{display:flex;gap:6px;margin:-4px 0 12px}.rotation-nudges button{flex:1;padding:8px 10px;font-size:.9rem}.autocomplete-results{z-index:100;max-height:260px;overscroll-behavior:contain}.suggestion-item{min-height:48px}.suggestion-item strong{font-weight:700}.ficha-specific-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.ficha-specific-grid label{margin:0}.ficha-specific-grid textarea{min-height:76px}.ficha-card{scroll-margin-top:12px}.canvas-wrap canvas{touch-action:none;user-select:none;-webkit-user-select:none}.ficha-gear-list .chip{display:inline-flex;align-items:center;gap:5px}.chip button{border:0;background:transparent;padding:0 3px;color:inherit;font-weight:700}@media(max-width:700px){.ficha-specific-grid{grid-template-columns:1fr}.rotation-nudges{gap:8px}.rotation-nudges button{min-height:44px}}
+
+/* v0.7: tabbed ficha navigation and touch-friendly rotation handle */
+.ficha-tabs{display:flex;gap:8px;overflow-x:auto;padding:8px 2px 14px;margin:0 0 12px;border-bottom:1px solid var(--line);scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.ficha-tab{display:flex;align-items:center;gap:8px;flex:0 0 auto;max-width:240px;text-align:left;padding:10px 12px;border-color:var(--line);background:var(--card);scroll-snap-align:start}
+.ficha-tab span{display:grid;place-items:center;min-width:32px;height:32px;border-radius:9px;background:#ebece8;font-weight:800;color:var(--ink)}
+.ficha-tab small{font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:165px}
+.ficha-tab.active{background:var(--teal-soft);border-color:#9abbb3;color:var(--teal);font-weight:700}
+.ficha-tab.active span{background:var(--teal);color:white}
+.ficha-count{margin:3px 0 0;color:var(--muted);font-size:.82rem}
+#sceneCanvas{cursor:crosshair}#sceneCanvas:active{cursor:grabbing}
+@media(max-width:700px){.ficha-tab{min-height:48px;max-width:210px}.ficha-tab small{max-width:135px}.ficha-head{flex-wrap:wrap}}
