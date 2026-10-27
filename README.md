@@ -1,4 +1,4 @@
-# Fichas de Luz v0.18 — seis etapas
+# Fichas de Luz v0.19 — seis etapas
 
 Aplicativo web responsivo para organizar projetos de iluminação, biblioteca de equipamentos e planta 2D / pré-visualização 3D esquemática.
 
@@ -34,7 +34,7 @@ A estrutura foi reduzida de dez etapas para seis fichas, agrupando campos relaci
 - A sincronização entre dispositivos e com Google Drive não está implementada.
 
 
-## Revisão técnica v0.18
+## Revisão técnica v0.19
 
 Correções desta versão:
 - Identificador estável para cada tipo de ficha; a renderização e o PDF deixam de depender apenas da posição da ficha.
@@ -54,7 +54,7 @@ Correções desta versão:
 A sintaxe de `app.js` foi validada com `node --check`, e foram executados testes de migração com dados sintéticos para projeto de dez fichas, contagem não padrão, tipo desconhecido e preservação de status/campos. A validação visual de navegador/Android e impressão PDF precisa ser feita no dispositivo de publicação; não é declarada como concluída. Não publique por cima da versão ativa sem backup JSON.
 
 
-## Testes automatizados v0.18
+## Testes automatizados v0.19
 Execute com Node.js a partir da raiz do pacote:
 
 ```sh
@@ -63,3 +63,20 @@ node QA_TESTS/test_migration.cjs
 ```
 
 Os testes usam dados sintéticos e verificam o service worker e os caminhos principais da migração. Eles não substituem testes visuais no dispositivo real.
+
+
+## Novidades da v0.19
+- Dimensões configuráveis do espaço (largura, comprimento e altura).
+- Perímetro do estúdio desenhado em escala na planta 2D e no PDF.
+- Fundo branco configurável por largura, altura e parede de instalação.
+- Seis fichas principais com instruções curtas em cada campo.
+- Migração de projetos antigos de dez fichas para seis etapas, mantendo cópia integral em `legacyFichas` e notas de campos sem correspondência.
+- Cabeçalho do PDF reorganizado em fluxo normal para evitar sobreposição.
+
+
+## Dimensões do espaço
+Na aba **Planta de luz**, preencha largura e comprimento do espaço em metros. A altura do estúdio é opcional se ainda não foi medida. Defina a largura do fundo no piso, sua altura física e em qual parede ele fica. O contorno e o fundo aparecem tanto na planta interativa quanto no PDF.
+
+## Fichas
+O projeto tem seis fichas principais. Cada campo inclui uma orientação do que registrar. Use “Ficha adicional” apenas quando houver uma necessidade fora do fluxo principal. Ao migrar um projeto legado, consulte o backup JSON: as fichas originais são mantidas em `legacyFichas`.
+Consulte `AUDITORIA_v0_19.md` para os testes e as limitações conhecidos.
