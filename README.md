@@ -1,22 +1,30 @@
-# Fichas de Luz v0.2
+# Fichas de Luz v0.3
 
-Protótipo web responsivo para planejamento de iluminação cinematográfica.
+Aplicativo web responsivo para organizar projetos, fichas de iluminação, biblioteca global de equipamentos e planta 2D / pré-visualização 3D esquemática.
 
-## Recursos desta versão
-- Biblioteca global de equipamentos com cadastro, categorias, busca e sugestões por datalist.
-- Planta 2D com zoom, pan, grade, objetos selecionáveis, arrastáveis e legendas.
-- Símbolos esquemáticos para luz, câmera, personagem, cadeira, mesa, sofá, parede, janela, bandeira e suporte.
-- Cone e cobertura geométrica aproximada de luz, controlados separadamente; luz pode ser desligada.
-- Vista isométrica 3D esquemática com os mesmos objetos e coordenadas da planta 2D.
-- Fichas com intenção, observações e associação de equipamentos da biblioteca.
-- Backup JSON e impressão/exportação via diálogo PDF do navegador.
-- Salvamento local no navegador e cache PWA básico.
+## Publicar no GitHub Pages pelo Android
+1. Baixe e extraia o ZIP no celular.
+2. Abra o repositório GitHub `fichas-de-luz`.
+3. Use **Add file → Upload files** e envie os arquivos que estão diretamente dentro desta pasta (`index.html`, `styles.css`, `app.js`, `manifest.webmanifest`, `sw.js`, `README.md`) para a raiz do repositório.
+4. Confirme o commit. O `index.html` deve estar na raiz, não dentro de uma subpasta.
+5. Aguarde o GitHub Pages concluir a implantação. Abra o site e atualize sem cache ou acrescente `?v=03` ao endereço.
+
+## Dados e segurança
+- Projetos e equipamentos ficam no armazenamento local do navegador neste dispositivo.
+- O backup JSON exporta projetos e biblioteca; Restaurar backup importa um JSON compatível e substitui os dados locais após confirmação.
+- Não há sincronização com Google Drive nesta versão.
+- Faça backup antes de limpar dados do navegador, trocar de aparelho ou atualizar se houver dados importantes.
+
+## Recursos
+- Página inicial com criar, abrir, editar, duplicar e excluir projetos.
+- Salvamento automático local.
+- Fichas técnicas por projeto, duplicação e exclusão.
+- Biblioteca global com busca, categorias, cadastro, edição e exclusão.
+- Planta 2D com zoom, pan, objetos arrastáveis, legendas e fachos estimados.
+- Vista isométrica 3D esquemática usando os mesmos objetos.
+- Exportação por impressão / PDF do navegador.
 
 ## Limitações conhecidas
-- A vista 3D é uma pré-visualização isométrica leve, não um motor 3D fotorealista nem simulação fotométrica.
-- A área de cobertura é geométrica e aproximada; não calcula lux, refletância, difusão física nem exposição.
-- Os dados permanecem no armazenamento local deste navegador/aparelho. Ainda não existe sincronização Google Drive nem restauração/importação do JSON pela interface.
-- Ao atualizar do MVP v0.1, os dados antigos podem permanecer na chave local antiga, mas não há migração garantida para todas as estruturas anteriores. Exporte um backup antes de substituir a versão publicada.
-
-## Publicação
-Envie os arquivos desta pasta para a raiz do repositório GitHub Pages, substituindo os arquivos anteriores. Depois, em Settings > Pages, confirme branch `main` e pasta `/(root)`. Aguarde a publicação e recarregue o site. Para atualizar o PWA instalado, feche e reabra; se persistir versão antiga, limpe o cache do site no Chrome.
+- A vista 3D é esquemática, não um render fisicamente realista.
+- A cobertura de luz é geométrica aproximada, não uma medição fotométrica.
+- A sincronização entre dispositivos e com Google Drive não está implementada.
