@@ -61,3 +61,14 @@ A exportação agora abre um relatório próprio para impressão, com capa do pr
 - Recupera a biblioteca inicial padrão se os dados locais existentes tiverem uma biblioteca vazia.
 - Busca sem diferenciar acentos e permite selecionar sugestões com toque e clique.
 - Os dados locais existentes de projetos são preservados.
+
+
+## v0.11 — correção do facho de luz
+- Corrige a convenção angular da cobertura na planta 2D: 0° direita, 90° cima, 180° esquerda, 270° baixo.
+- Mantém o ângulo das linhas delimitadoras consistente com essa convenção.
+
+
+## v0.12 — reformulação das fichas
+- Campos específicos de cada uma das dez etapas passam a ser a área principal de preenchimento.
+- Identificação e campos genéricos ficam em painéis opcionais recolhíveis para reduzir repetição visual.
+- A exportação mantém os campos específicos e a detecção de ficha preenchida considera os dados próprios da etapa.

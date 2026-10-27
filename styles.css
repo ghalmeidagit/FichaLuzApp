@@ -35,3 +35,18 @@
 .ficha-step-nav span{font-weight:700;color:var(--muted);font-size:.9rem}
 .ficha-step-nav button{min-height:44px}
 .ficha-step-nav button:disabled{opacity:.4;cursor:not-allowed}
+
+/* v0.12 — cada ficha prioriza os campos próprios da etapa */
+.ficha-general-fields{border:1px solid var(--line);border-radius:12px;margin:12px 0;padding:0 14px;background:rgba(120,130,130,.035)}
+.ficha-general-fields>summary{cursor:pointer;list-style:none;padding:14px 0;font-weight:650;color:var(--muted)}
+.ficha-general-fields>summary::-webkit-details-marker{display:none}
+.ficha-general-fields>summary:after{content:"＋";float:right}
+.ficha-general-fields[open]>summary:after{content:"−"}
+.ficha-general-fields .ficha-grid{padding:0 0 12px}
+.ficha-specific-section{margin:18px 0 12px;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.ficha-specific-section h4{font-size:1.08rem;margin:0 0 5px;color:var(--accent,#17645a)}
+.ficha-specific-section>p{margin:0 0 14px}
+.ficha-specific-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ficha-specific-grid label{display:flex;flex-direction:column;gap:6px;min-width:0}
+.ficha-specific-grid textarea{width:100%;min-height:82px}
+@media(max-width:640px){.ficha-specific-grid{grid-template-columns:1fr}.ficha-specific-section{padding:12px}}
