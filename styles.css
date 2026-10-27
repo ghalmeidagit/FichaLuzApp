@@ -15,3 +15,23 @@
 .ficha-count{margin:3px 0 0;color:var(--muted);font-size:.82rem}
 #sceneCanvas{cursor:crosshair}#sceneCanvas:active{cursor:grabbing}
 @media(max-width:700px){.ficha-tab{min-height:48px;max-width:210px}.ficha-tab small{max-width:135px}.ficha-head{flex-wrap:wrap}}
+
+/* v0.9: clear ficha navigation and configurable PDF export */
+.ficha-navigation{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;margin:10px 0 0;color:var(--ink)}
+.ficha-navigation span{font-size:.85rem;color:var(--muted)}
+.export-dialog{width:min(620px,calc(100% - 24px));max-height:85vh;overflow:auto;border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--card);color:var(--ink)}
+.export-dialog::backdrop{background:#10182099}
+.export-dialog h2{margin:0 0 8px}
+.export-dialog p{color:var(--muted);line-height:1.45}
+.export-option{display:flex;flex-direction:row;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.export-option input,.export-ficha-option input{width:auto;flex:0 0 auto}
+.export-ficha-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:18px 0 8px}
+.export-ficha-choices{display:grid;gap:6px;max-height:260px;overflow:auto}
+.export-ficha-option{display:flex;flex-direction:row;align-items:flex-start;gap:10px;padding:10px;border:1px solid var(--line);border-radius:10px;margin:0}
+.export-ficha-option span{display:grid;gap:3px}
+.export-ficha-option small{font-size:.8rem;color:var(--muted)}
+
+.ficha-step-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 14px;padding:10px 0}
+.ficha-step-nav span{font-weight:700;color:var(--muted);font-size:.9rem}
+.ficha-step-nav button{min-height:44px}
+.ficha-step-nav button:disabled{opacity:.4;cursor:not-allowed}
