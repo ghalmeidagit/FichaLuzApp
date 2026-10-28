@@ -1,108 +1,37 @@
-# Fichas de Luz v0.22 — seis etapas
+# Fichas de Luz v0.24.1
 
-Aplicativo web responsivo para organizar projetos de iluminação, biblioteca de equipamentos e planta 2D / pré-visualização 3D isométrica esquemática.
+Aplicativo local-first para planejamento de iluminação cinematográfica, com planta 2D cotada, vista isométrica esquemática, biblioteca de equipamentos, cinco fichas operacionais e exportação em PDF.
 
-## Publicar no GitHub Pages pelo Android
-1. Faça backup JSON no aplicativo antes de atualizar.
-2. Extraia este ZIP.
-3. No repositório GitHub `fichas-de-luz`, envie os arquivos desta pasta para a raiz e confirme o commit.
-4. Aguarde a implantação do GitHub Pages e abra o site. Se a versão antiga continuar aparecendo, atualize sem cache ou abra o endereço com `?v=022`.
-
-## Fichas reorganizadas
+## As cinco fichas
 1. Cena e intenção
 2. Locação e condições
-3. Estratégia de luz
-4. Planta e posições
-5. Equipamento e verificação
-6. Execução e ajustes
+3. Folha de luz e planta
+4. Teste e aprovação
+5. Execução e relatório do dia
 
-A estrutura foi reduzida de dez etapas para seis fichas, agrupando campos relacionados e mantendo campos específicos por etapa. A migração consolida a estrutura conhecida de dez fichas antigas nos seis cartões e preserva cópia integral em `legacyFichas`. Fichas com tipo desconhecido não são classificadas pela posição: ficam marcadas como fichas legadas/adicionais, mantendo seus dados para revisão manual. Os seis tipos principais ausentes são acrescentados sem reclassificar os cartões existentes. Faça backup antes de atualizar.
+Cada ficha inclui autor, versão, estado temporal, tipo do documento (esquema/estimado/medido) e distribuição. Os campos específicos têm orientações curtas para favorecer preenchimento objetivo no set.
 
-## Dados e segurança
-- Projetos e equipamentos ficam no armazenamento local do navegador neste dispositivo.
-- O backup JSON exporta projetos e biblioteca; restaurar um backup substitui os dados locais após confirmação.
-- Não há sincronização automática com Google Drive.
-- Faça backup antes de limpar dados do navegador, trocar de aparelho ou atualizar.
+## Atualização segura
+1. No app atual, exporte **Backup JSON** antes de substituir os arquivos.
+2. Atualize os arquivos do repositório pelo conteúdo deste ZIP, mantendo a pasta `icons/` na raiz.
+3. Não limpe os dados do navegador. A chave local foi preservada e a migração converte as seis fichas anteriores para a nova estrutura de cinco, arquivando os registros legados e preservando conteúdo sem mapeamento em observações ou fichas adicionais.
+4. Após publicar, abra o aplicativo e confira um projeto antigo antes de continuar editando.
 
-## Recursos e limitações
-- Projetos: criar, abrir, editar, duplicar e excluir.
-- Salvamento automático local.
-- Fichas técnicas por projeto, biblioteca global de equipamentos e exportação para impressão/PDF.
-- Planta 2D com zoom, pan, objetos arrastáveis, rotação e fachos estimados.
-- Vista isométrica 3D isométrica esquemática; não é render fisicamente realista.
-- A cobertura de luz é geométrica aproximada, não medição fotométrica.
-- A sincronização entre dispositivos e com Google Drive não está implementada.
+## Planta e vista 3D
+A planta usa coordenadas X/Y em metros, com origem no centro do estúdio. Objetos fora do perímetro são sinalizados e não são movidos automaticamente. A vista isométrica 3D é esquemática; os fachos não representam fotometria real.
 
+## Testes
+Execute com Node.js, a partir da raiz:
 
-## Revisão técnica v0.22
-
-Correções desta versão:
-- Identificador estável para cada tipo de ficha; a renderização e o PDF deixam de depender apenas da posição da ficha.
-- Migração sem perda intencional: cópia integral das fichas de origem em `legacyFichas`; status preservado quando há correspondência; campos sem destino ficam nas observações ou no registro legado.
-- Fichas desconhecidas não recebem um tipo com base na posição da lista.
-- Formulários reduzidos a metadados compartilhados, campos específicos da etapa, equipamentos e observações; os campos técnicos aparecem na etapa pertinente.
-- Restaurar backup executa a migração e normalização antes de salvar.
-- Projetos com outras quantidades de fichas são preservados; fichas extras são marcadas como adicionais, sem receber campos específicos de uma etapa por engano.
-- Unificação da convenção angular do facho entre planta interativa e PDF, incluindo a inversão vertical necessária ao canvas do PDF.
-- Eixo central tracejado com seta na cobertura de luz, na planta e no PDF.
-- Enquadramento do PDF passa a considerar o alcance máximo das fontes ligadas.
-- Alça de rotação acompanha a orientação do objeto.
-- Correção da versão no cabeçalho e atualização do cache PWA.
-
-## Limites da validação
-
-A sintaxe de `app.js` foi validada com `node --check`, e foram executados testes de migração com dados sintéticos para projeto de dez fichas, contagem não padrão, tipo desconhecido e preservação de status/campos. A validação visual de navegador/Android e impressão PDF precisa ser feita no dispositivo de publicação; não é declarada como concluída. Não publique por cima da versão ativa sem backup JSON.
-
-
-## Testes automatizados v0.22
-Execute com Node.js a partir da raiz do pacote:
-
-```sh
-node QA_TESTS/test_sw.cjs
+```bash
+node --check app.js
+node --check sw.js
 node QA_TESTS/test_migration.cjs
+node QA_TESTS/test_sw.cjs
+node QA_TESTS/test_room_drawing.cjs
+node QA_TESTS/test_outside_objects.cjs
+node QA_TESTS/test_pdf_diagrams.cjs
+node QA_TESTS/test_five_forms.cjs
 ```
 
-Os testes usam dados sintéticos e verificam o service worker e os caminhos principais da migração. Eles não substituem testes visuais no dispositivo real.
-
-
-## Novidades da v0.22
-- Dimensões configuráveis do espaço (largura, comprimento e altura).
-- Perímetro do estúdio desenhado em escala na planta 2D e no PDF.
-- Fundo branco configurável por largura, altura e parede de instalação.
-- Seis fichas principais com instruções curtas em cada campo.
-- Migração de projetos antigos de dez fichas para seis etapas, mantendo cópia integral em `legacyFichas` e notas de campos sem correspondência.
-- Cabeçalho do PDF reorganizado em fluxo normal para evitar sobreposição.
-
-
-## Dimensões do espaço
-Na aba **Planta de luz**, preencha largura e comprimento do espaço em metros. A altura do estúdio é opcional se ainda não foi medida. Defina a largura e o comprimento do fundo no piso e escolha a parede onde ele encosta. O contorno e o fundo aparecem tanto na planta interativa quanto no PDF.
-
-## Fichas
-O projeto tem seis fichas principais. Cada campo inclui uma orientação do que registrar. Use “Ficha adicional” apenas quando houver uma necessidade fora do fluxo principal. Ao migrar um projeto legado, consulte o backup JSON: as fichas originais são mantidas em `legacyFichas`.
-Consulte `AUDITORIA_v0_21.md` para os testes e as limitações conhecidos.
-
-
-## Novidades da v0.22 — cotas visíveis na planta
-- Linhas de cota com setas e medidas para largura e comprimento do estúdio na planta 2D.
-- Paredes e piso esquemáticos também na vista 3D.
-- Fundo branco identificado com largura e altura e posicionado na parede selecionada.
-- Ao aplicar dimensões, o zoom enquadra o estúdio para a tela disponível.
-- Teste reproduzível: `node QA_TESTS/test_room_drawing.cjs`.
-
-
-## Vista 3D v0.22
-- Vista isométrica com piso, paredes translúcidas e grade métrica opcional.
-- Fundo branco representado como área retangular no piso, com largura e comprimento.
-- Objetos usam as mesmas coordenadas X/Y/Z da planta 2D.
-- Fachos são volumes esquemáticos projetados da altura da fonte ao piso; não são simulação fotométrica.
-- Campo antigo `backdropHeight` é lido como compatibilidade e mapeado para `backdropLength`.
-
-
-## Novidades da v0.22 — alertas de objetos fora do estúdio
-- Manifesto, interface e cache identificam a v0.22.
-- A planta 2D e a vista isométrica destacam em vermelho os objetos cujas coordenadas X/Y estão fora do perímetro configurado.
-- Os objetos não são movidos automaticamente; revise as coordenadas no editor.
-- O manifesto mantém os ícones `icons/icon-192.png` e `icons/icon-512.png`.
-- A vista 3D permanece uma projeção isométrica esquemática em Canvas, não uma cena 3D orbital.
-
-- Teste dos avisos de objetos fora do perímetro: `node QA_TESTS/test_outside_objects.cjs` (5 verificações estáticas).
+Consulte `AUDITORIA_v0_24.md` para o escopo de auditoria e as limitações da validação.
