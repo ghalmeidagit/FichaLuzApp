@@ -1,12 +1,12 @@
-# Fichas de Luz v0.19 — seis etapas
+# Fichas de Luz v0.22 — seis etapas
 
-Aplicativo web responsivo para organizar projetos de iluminação, biblioteca de equipamentos e planta 2D / pré-visualização 3D esquemática.
+Aplicativo web responsivo para organizar projetos de iluminação, biblioteca de equipamentos e planta 2D / pré-visualização 3D isométrica esquemática.
 
 ## Publicar no GitHub Pages pelo Android
 1. Faça backup JSON no aplicativo antes de atualizar.
 2. Extraia este ZIP.
 3. No repositório GitHub `fichas-de-luz`, envie os arquivos desta pasta para a raiz e confirme o commit.
-4. Aguarde a implantação do GitHub Pages e abra o site. Se a versão antiga continuar aparecendo, atualize sem cache ou abra o endereço com `?v=018`.
+4. Aguarde a implantação do GitHub Pages e abra o site. Se a versão antiga continuar aparecendo, atualize sem cache ou abra o endereço com `?v=022`.
 
 ## Fichas reorganizadas
 1. Cena e intenção
@@ -29,12 +29,12 @@ A estrutura foi reduzida de dez etapas para seis fichas, agrupando campos relaci
 - Salvamento automático local.
 - Fichas técnicas por projeto, biblioteca global de equipamentos e exportação para impressão/PDF.
 - Planta 2D com zoom, pan, objetos arrastáveis, rotação e fachos estimados.
-- Vista isométrica 3D esquemática; não é render fisicamente realista.
+- Vista isométrica 3D isométrica esquemática; não é render fisicamente realista.
 - A cobertura de luz é geométrica aproximada, não medição fotométrica.
 - A sincronização entre dispositivos e com Google Drive não está implementada.
 
 
-## Revisão técnica v0.19
+## Revisão técnica v0.22
 
 Correções desta versão:
 - Identificador estável para cada tipo de ficha; a renderização e o PDF deixam de depender apenas da posição da ficha.
@@ -54,7 +54,7 @@ Correções desta versão:
 A sintaxe de `app.js` foi validada com `node --check`, e foram executados testes de migração com dados sintéticos para projeto de dez fichas, contagem não padrão, tipo desconhecido e preservação de status/campos. A validação visual de navegador/Android e impressão PDF precisa ser feita no dispositivo de publicação; não é declarada como concluída. Não publique por cima da versão ativa sem backup JSON.
 
 
-## Testes automatizados v0.19
+## Testes automatizados v0.22
 Execute com Node.js a partir da raiz do pacote:
 
 ```sh
@@ -65,7 +65,7 @@ node QA_TESTS/test_migration.cjs
 Os testes usam dados sintéticos e verificam o service worker e os caminhos principais da migração. Eles não substituem testes visuais no dispositivo real.
 
 
-## Novidades da v0.19
+## Novidades da v0.22
 - Dimensões configuráveis do espaço (largura, comprimento e altura).
 - Perímetro do estúdio desenhado em escala na planta 2D e no PDF.
 - Fundo branco configurável por largura, altura e parede de instalação.
@@ -75,8 +75,34 @@ Os testes usam dados sintéticos e verificam o service worker e os caminhos prin
 
 
 ## Dimensões do espaço
-Na aba **Planta de luz**, preencha largura e comprimento do espaço em metros. A altura do estúdio é opcional se ainda não foi medida. Defina a largura do fundo no piso, sua altura física e em qual parede ele fica. O contorno e o fundo aparecem tanto na planta interativa quanto no PDF.
+Na aba **Planta de luz**, preencha largura e comprimento do espaço em metros. A altura do estúdio é opcional se ainda não foi medida. Defina a largura e o comprimento do fundo no piso e escolha a parede onde ele encosta. O contorno e o fundo aparecem tanto na planta interativa quanto no PDF.
 
 ## Fichas
 O projeto tem seis fichas principais. Cada campo inclui uma orientação do que registrar. Use “Ficha adicional” apenas quando houver uma necessidade fora do fluxo principal. Ao migrar um projeto legado, consulte o backup JSON: as fichas originais são mantidas em `legacyFichas`.
-Consulte `AUDITORIA_v0_19.md` para os testes e as limitações conhecidos.
+Consulte `AUDITORIA_v0_21.md` para os testes e as limitações conhecidos.
+
+
+## Novidades da v0.22 — cotas visíveis na planta
+- Linhas de cota com setas e medidas para largura e comprimento do estúdio na planta 2D.
+- Paredes e piso esquemáticos também na vista 3D.
+- Fundo branco identificado com largura e altura e posicionado na parede selecionada.
+- Ao aplicar dimensões, o zoom enquadra o estúdio para a tela disponível.
+- Teste reproduzível: `node QA_TESTS/test_room_drawing.cjs`.
+
+
+## Vista 3D v0.22
+- Vista isométrica com piso, paredes translúcidas e grade métrica opcional.
+- Fundo branco representado como área retangular no piso, com largura e comprimento.
+- Objetos usam as mesmas coordenadas X/Y/Z da planta 2D.
+- Fachos são volumes esquemáticos projetados da altura da fonte ao piso; não são simulação fotométrica.
+- Campo antigo `backdropHeight` é lido como compatibilidade e mapeado para `backdropLength`.
+
+
+## Novidades da v0.22 — alertas de objetos fora do estúdio
+- Manifesto, interface e cache identificam a v0.22.
+- A planta 2D e a vista isométrica destacam em vermelho os objetos cujas coordenadas X/Y estão fora do perímetro configurado.
+- Os objetos não são movidos automaticamente; revise as coordenadas no editor.
+- O manifesto mantém os ícones `icons/icon-192.png` e `icons/icon-512.png`.
+- A vista 3D permanece uma projeção isométrica esquemática em Canvas, não uma cena 3D orbital.
+
+- Teste dos avisos de objetos fora do perímetro: `node QA_TESTS/test_outside_objects.cjs` (5 verificações estáticas).
